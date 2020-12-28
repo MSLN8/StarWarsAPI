@@ -1,0 +1,48 @@
+<div *ngIf="currentStarship" class="row">
+  <div class="col s12 m8 offset-m2">
+    <h2 class="header center">{{ currentStarship.name }}</h2>
+    <div class="card horizontal hoverable">
+      <div class="card-stacked">
+        <div class="card-content">
+          <table class="bordered striped">
+            <tbody>
+              <tr>
+                <td>Model</td>
+                <td><strong>{{ currentStarship.model }}</strong></td>
+              </tr>
+              <tr>
+                <td>Manufacturer</td>
+                <td><strong>{{ currentStarship.manufacturer }}</strong></td>
+              </tr>
+              <tr>
+                <td>Length</td>
+                <td><strong>{{ currentStarship.length }}</strong></td>
+              </tr>
+              <tr>
+                <td>Max Atmosphering Speed</td>
+                <td><strong>{{ currentStarship.max_atmosphering_speed }}</strong></td>
+              </tr>
+              <tr *ngIf="currentStarship.pilots.length > 0">
+                <td>Pilots</td>
+                <td>
+                  <ul *ngFor="let pilot of pilotsProfile">
+                    <li (click)="navigate(pilot.url)">{{ pilot.name }}</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr *ngIf="currentStarship.pilots.length === 0">
+                <td>Pilots</td>
+                <td>
+                <p> No pilot for this ship !</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-action">
+          <a (click)="goBack()">Go Back</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

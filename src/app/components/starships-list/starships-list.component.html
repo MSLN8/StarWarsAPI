@@ -1,0 +1,17 @@
+<h1 class='center'> Starships List</h1>
+<div class='container'>
+    <div class="row">
+        <div *ngFor='let starship of starships' class="col s6 m4">
+            <div class="card horizontal" (click)="navigate(starship.url)" starshipBorderCard>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p>{{ starship.name }}</p>
+                        <p><small> Created on: {{ starship.created | date:'fullDate' }}</small></p>
+                        <p><small>Cost in credits: {{ starship.cost_in_credits}}</small></p>
+                        <p><small>Max atmosphering speed: {{ starship.max_atmosphering_speed}}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

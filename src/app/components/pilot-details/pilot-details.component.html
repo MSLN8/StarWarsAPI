@@ -1,0 +1,35 @@
+<div *ngIf="currentPilot" class="row">
+  <div class="col s12 m8 offset-m2">
+    <h2 class="header center">{{ currentPilot.name }}</h2>
+    <div class="card horizontal hoverable">
+      <div class="card-stacked">
+        <div class="card-content">
+          <table class="bordered striped">
+            <tbody>
+              <tr>
+                <td>Height</td>
+                <td><strong>{{ currentPilot.height }}</strong></td>
+              </tr>
+              <tr>
+                <td>Eye color</td>
+                <td><strong>{{ currentPilot.eye_color }}</strong></td>
+              </tr>
+              <tr>
+                <td>Hair Color</td>
+                <td><strong>{{ currentPilot.hair_color}}</strong></td>
+              </tr>
+              <tr>
+                <td>Gender</td>
+                <td><strong>{{ currentPilot.gender }}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-action">
+          <a (click)="goBack()">Home</a>
+          <a (click)="previousPage()">Previous Page</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
