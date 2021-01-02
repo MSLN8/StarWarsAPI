@@ -10,27 +10,26 @@ import { StarshipService } from 'src/app/services/starship.service';
 export class StarshipsListComponent implements OnInit {
   currentStarship = null;
   myImage: any;
-  starships: any;
+  starships = [];
   constructor(
     private starshipService: StarshipService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
+    if (this.starshipService.ship.length === 0) {
+      this.starshipService.getAll(
+        'ship',
+        'https://swapi.dev/api/starships/?page=1'
+      );
+    }
     this.retrieveStarships();
   }
 
-  retrieveStarships(): void {
-    this.starshipService.getAll().subscribe(
-      (data) => {
-        this.starships = data.results;
-        console.log(data);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+  retrieveStarships() {
+    this.starships = this.starshipService.ship;
   }
+
   navigate(url: string) {
     const id = url.split('/').splice(-2, 1);
     this.router.navigate(['/starships' + '/' + id]);

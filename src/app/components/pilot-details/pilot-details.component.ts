@@ -19,10 +19,13 @@ export class PilotDetailsComponent implements OnInit {
     this.getPilot(this.route.snapshot.paramMap.get('id'));
   }
   getPilot(id): void {
-    this.starshipService.getPilot(id).subscribe(
-      (data) => {
-        this.currentPilot = data;
-        console.log(data);
+    this.starshipService.people.map(
+      (onePilot) => {
+        let url = onePilot.url.split('/').splice(-2, 1);
+        if (url[0] === id) {
+          this.currentPilot = onePilot;
+          return this.currentPilot;
+        }
       },
       (error) => {
         console.log(error);

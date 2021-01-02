@@ -19,33 +19,39 @@ export class StarshipDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (this.starshipService.people.length === 0) {
+      this.starshipService.getAll(
+        'pilot',
+        'https://swapi.dev/api/people/?page=1'
+      );
+    }
     this.getStarship(this.route.snapshot.paramMap.get('id'));
   }
 
   getStarship(id): void {
-    this.starshipService.get(id).subscribe(
-      (data) => {
-        this.currentStarship = data;
-        this.pilots = data.pilots;
-        this.pilots.forEach((element) => this.getPilots(element));
-      },
-      (error) => {
-        console.log(error);
+    this.starshipService.ship.map((oneShip) => {
+      let url = oneShip.url.split('/').splice(-2, 1);
+      if (url[0] === id) {
+        this.currentStarship = oneShip;
+        if (oneShip.pilots && this.pilotsProfile.length === 0) {
+          oneShip.pilots.map((onePilot) => this.getPilot(onePilot));
+        }
+        return this.currentStarship;
       }
-    );
+    });
   }
 
-  getPilots(url): void {
-    const id = url.split('/').splice(-2, 1);
-    this.starshipService.getPilot(id).subscribe(
-      (data) => {
-        this.pilotsProfile.push(data);
-      },
-      (error) => {
-        console.log(error);
+  getPilot(url) {
+    this.pilots = this.starshipService.people;
+    this.pilots.map((onePilot) => {
+      if (onePilot.url === url) {
+        const { name, url } = onePilot;
+        this.pilotsProfile.push({ name, url });
+        return this.pilotsProfile;
       }
-    );
+    });
   }
+
   goBack(): void {
     this.router.navigate(['/starships']);
   }
