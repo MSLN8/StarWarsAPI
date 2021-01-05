@@ -8,6 +8,7 @@ import { StarshipsListComponent } from './components/starships-list/starships-li
 import { HttpClientModule } from '@angular/common/http';
 import { PilotDetailsComponent } from './components/pilot-details/pilot-details.component';
 import { BorderCardDirective } from './border-card.directive';
+import { PageNotFoundComponent } from './components/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { BorderCardDirective } from './border-card.directive';
     StarshipsListComponent,
     PilotDetailsComponent,
     BorderCardDirective,
+    PageNotFoundComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
