@@ -10,10 +10,10 @@ export class BorderCardDirective {
   }
 
   @HostListener('mouseenter') onMouseEnter() {
-    this.setBorder('#009688');
+    this.setBorder('#ffe436');
   }
 
-  @HostListener('mouseenter') onMouseLeave() {
+  @HostListener('mouseleave') onMouseLeave() {
     this.setBorder('#f5f5f5');
   }
 
